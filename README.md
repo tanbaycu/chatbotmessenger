@@ -280,3 +280,11 @@ Chúng tôi hoan nghênh mọi đóng góp! Vui lòng gửi issues và pull requ
 
 
 ---
+
+
+## Đọc thêm tại đây
+
+
+
+
+[Hướng dẫn toàn diện](https://telegra.ph/tanbaycu---chatbot-guide-11-20)
