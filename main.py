@@ -155,7 +155,7 @@ def send_to_gemini(
     max_retries=3,
     initial_delay=1,
 ):
-    api_keys = ["YOUR_GEMINI_API_KEY_1", "YOUR_GEMINI_API_KEY_2"]
+    api_keys = [os.getenv("GEMINI_API_KEY_1"), os.getenv("GEMINI_API_KEY_2")]
 
     for api_key in api_keys:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"  # base url
@@ -227,7 +227,7 @@ def generate_image_huggingface(prompt):
     API_URL = (
         "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5"
     )
-    headers = {"Authorization": "Bearer YOUR_HUGGINGFACE_TOKEN"}
+    headers = {"Authorization": "Bearer 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"}
 
     payload = {
         "inputs": prompt,
@@ -1334,8 +1334,8 @@ class MesChat(Sender):  # hàm xử lý nâng cao
         self.MAX_MESSAGE_LENGTH = 2000
         self.current_language = "vi"
         self.conversation_history = []
-        self.unsplash_access_key = ""
-        self.github_token = ""
+        self.unsplash_access_key = os.getenv("UNSPLASH_ACCESS_KEY")
+        self.github_token = os.getenv("GITHUB_TOKEN")
         self.max_history_length = 100
         self.longterm_memory_file = "longterm_memory.json"
         self.max_memory_size = 10000  # Giới hạn số lượng tin nhắn lưu trữ
@@ -1366,7 +1366,7 @@ class MesChat(Sender):  # hàm xử lý nâng cao
                 self.translate_message(f"🔍 Đang tìm ảnh cho '{query}'...")
             )
 
-            # Request thêm ảnh để l���c (30 ảnh)
+            
             encoded_query = quote_plus(query)
 
             try:
@@ -1544,7 +1544,7 @@ class MesChat(Sender):  # hàm xử lý nâng cao
         if cache_key in self.recipe_cache:
             return self.recipe_cache[cache_key]
 
-        api_key = ""  # Thay thế bằng API key của bạn
+        api_key = os.getenv("RECIPE_API")
         base_url = "https://api.spoonacular.com/recipes/complexSearch"
 
         params = {
@@ -2594,15 +2594,15 @@ Hãy trình bày tóm tắt một cách súc tích và dễ đọc."""
 
     def send_guide(self):
         """Gửi link hướng dẫn sử dụng bot"""
-        guide_url = "YOUR_GUIDE_URL"
+        guide_url = "https://telegra.ph/tanbaycu---chatbot-guide-11-20"
         message = self.translate_message(f"📚 Xem hướng dẫn chi tiết tại:\n{guide_url}")
         self.send_message(message)
 
 
 CHAT_URLS = {
-    "test": "https://www.messenger.com/t/YOUR_TEST_CHAT_ID",
-    "group1": "https://www.messenger.com/t/YOUR_GROUP1_ID",
-    "group2": "https://www.messenger.com/t/YOUR_GROUP2_ID",
+    "test": os.getenv("TEST_CHAT_URL"),
+    "group1": os.getenv("GROUP1_CHAT_URL"),
+    "group2": os.getenv("GROUP2_CHAT_URL"),
 }
 
 if __name__ == "__main__":
@@ -2611,8 +2611,8 @@ if __name__ == "__main__":
         try:
             # Khởi tạo bot
             meschat = MesChat(
-                email_or_phone="YOUR_EMAIL",
-                password="YOUR_PASSWORD",
+                email_or_phone=os.getenv("EMAIL"),
+                password=os.getenv("PASSWORD"),
                 group_or_chat=CHAT_URLS[CURRENT_CHAT],
             )
 
@@ -2643,5 +2643,3 @@ if __name__ == "__main__":
 
 
 
-
-đây là phiên bản cuối cùng mà mình có thể suy nghĩ ra thêm nữa, open-source nên bạn có thể chỉnh sửa bất kỳ chỗ nào theo nhu cầu sử dụng của bạn.

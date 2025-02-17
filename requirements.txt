@@ -1,0 +1,12 @@
+selenium
+deep-translator
+emoji
+requests
+colorama
+psutil
+numpy
+scikit-learn
+google-generativeai
+Pillow
+qrcode
+gtts
