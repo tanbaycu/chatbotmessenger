@@ -227,7 +227,7 @@ def generate_image_huggingface(prompt):
     API_URL = (
         "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5"
     )
-    headers = {"Authorization": "Bearer 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"}
+    headers = {"Authorization": "Bearer "}
 
     payload = {
         "inputs": prompt,
